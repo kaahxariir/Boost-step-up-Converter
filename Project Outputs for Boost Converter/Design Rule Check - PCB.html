@@ -1,0 +1,561 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD23\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">14.12.2025</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">19:46:41</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc" class="file"><acronym title="C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc">C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">71</td></tr>
+</table>
+</td>
+</table><a name="IDHLJCOCHF0IQXFCFYULN4O2HSLNLUW1JFKSO32BMXGP4RU2U2NMNB"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDKLDVGGLTE1RF5W5UFTWMVWY5OPXAJ2WDAO55XJUXSUEYMXAK5TI">Clearance Constraint (Gap=0.25mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDAIJ4NWA5GXR3IN3BW4A1L5T0CHN23XVQWKSMPLFJPUV4ZI5BL0FI">Clearance Constraint (Gap=0.2mm) (All),(All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTNEOEKWZCOTGE33MMJS5ECRVDGVNZGXWECP1AQETDE50D4QQH43B">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDDJF1YVTON0QDFCYU5MVNCM0N2K0Q2DWK3QGG51GL44JEKIDQZF1F">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQSPBGXBUBSNJHMQGBJBTSSVYJICACCNCTA0SA0E34GNYCJH23PQP">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDD4MET0CDDDSAFZVLF5AOL32SMN3TSIRRRA3QCICWDFHD1XZWV4P">Width Constraint (Min=0.2mm) (Max=2mm) (Preferred=0.5mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4DHCNP0BRO3PDH2TQ144UMSIFNQD3THBVLKNTGEZMEPAZCCTW30F">Power Plane Connect Rule(Direct Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDS403YWDGATVYO3VQLYOJHKWXYMUIQOEB1P3JQGNWQE20CMCWRPDJ">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDVQRKEZLMYETRO1NSDS1PKYSWIGM3PGDIQ5MORQMGGFRZLEFU2JBM">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID4HECHPX0PPWELIZ4TKDGA3MF1DIPVHXFPGVJUOII3PSTRWBMFINH">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">12</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDXAUTRCMRXGZSFXDIP4RRZVAU3FYT3XO004HN1BN53C5OZAQUE4FP">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">30</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDP2GQFK5RDAOUEUPW5LHT1WWLJMK4KHK45K22Y5NIR310U0EPBCEL">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID2KOTTWMSKZXBJ5E4T0HEOPJFNKPFORY4RJEFMFLOV50CX5AGSUPI">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">23</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRXWCKS2LSS3LFLW1XOCTKWZXXNN212GIWYOFL2O4QS1QGBZRTGWE">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">71</td>
+</tr>
+</table><br><a name="IDAIJ4NWA5GXR3IN3BW4A1L5T0CHN23XVQWKSMPLFJPUV4ZI5BL0FI"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=0.2mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2976.934mil|Location2.X=2986.058mil|Location1.Y=2483.135mil|Location2.Y=2492.259mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2976.934mil|Location2.X=2986.058mil|Location1.Y=2483.135mil|Location2.Y=2492.259mil|Absolute=True">Clearance Constraint: (0.175mm &lt; 0.2mm) Between Pad U1-2(29.68mm,15mm) on Top Layer And Track (29.68mm,14.35mm)(31.73mm,14.35mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2976.934mil|Location2.X=2986.058mil|Location1.Y=2456.56mil|Location2.Y=2465.684mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2976.934mil|Location2.X=2986.058mil|Location1.Y=2456.56mil|Location2.Y=2465.684mil|Absolute=True">Clearance Constraint: (0.175mm &lt; 0.2mm) Between Pad U1-4(29.68mm,13.7mm) on Top Layer And Track (29.68mm,14.35mm)(31.73mm,14.35mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDS403YWDGATVYO3VQLYOJHKWXYMUIQOEB1P3JQGNWQE20CMCWRPDJ"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1865.517mil|Location2.X=1992.751mil|Location1.Y=3391.107mil|Location2.Y=3518.341mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1865.517mil|Location2.X=1992.751mil|Location1.Y=3391.107mil|Location2.Y=3518.341mil|Absolute=True">Hole Size Constraint: (3.2mm &gt; 2.54mm) Pad PTH1-1(3.75mm,39.25mm) on Multi-Layer Actual Hole Size = 3.2mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1865.517mil|Location2.X=1992.751mil|Location1.Y=1993.469mil|Location2.Y=2120.704mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1865.517mil|Location2.X=1992.751mil|Location1.Y=1993.469mil|Location2.Y=2120.704mil|Absolute=True">Hole Size Constraint: (3.2mm &gt; 2.54mm) Pad PTH2-1(3.75mm,3.75mm) on Multi-Layer Actual Hole Size = 3.2mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3981.659mil|Location2.X=4108.893mil|Location1.Y=1993.469mil|Location2.Y=2120.704mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3981.659mil|Location2.X=4108.893mil|Location1.Y=1993.469mil|Location2.Y=2120.704mil|Absolute=True">Hole Size Constraint: (3.2mm &gt; 2.54mm) Pad PTH3-1(57.5mm,3.75mm) on Multi-Layer Actual Hole Size = 3.2mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3981.659mil|Location2.X=4108.893mil|Location1.Y=3391.107mil|Location2.Y=3518.341mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3981.659mil|Location2.X=4108.893mil|Location1.Y=3391.107mil|Location2.Y=3518.341mil|Absolute=True">Hole Size Constraint: (3.2mm &gt; 2.54mm) Pad PTH4-1(57.5mm,39.25mm) on Multi-Layer Actual Hole Size = 3.2mm</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID4HECHPX0PPWELIZ4TKDGA3MF1DIPVHXFPGVJUOII3PSTRWBMFINH"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2912.879mil|Location2.X=2924.129mil|Location1.Y=2507.17mil|Location2.Y=2518.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2912.879mil|Location2.X=2924.129mil|Location1.Y=2507.17mil|Location2.Y=2518.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-1(29.68mm,15.65mm) on Top Layer And Pad U1-2(29.68mm,15mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3125.477mil|Location2.X=3136.727mil|Location1.Y=2430.399mil|Location2.Y=2441.649mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3125.477mil|Location2.X=3136.727mil|Location1.Y=2430.399mil|Location2.Y=2441.649mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-10(35.08mm,13.05mm) on Top Layer And Pad U1-11(35.08mm,13.7mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3125.477mil|Location2.X=3136.727mil|Location1.Y=2404.808mil|Location2.Y=2416.058mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3125.477mil|Location2.X=3136.727mil|Location1.Y=2404.808mil|Location2.Y=2416.058mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-10(35.08mm,13.05mm) on Top Layer And Pad U1-9(35.08mm,12.4mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3125.477mil|Location2.X=3136.727mil|Location1.Y=2455.989mil|Location2.Y=2467.239mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3125.477mil|Location2.X=3136.727mil|Location1.Y=2455.989mil|Location2.Y=2467.239mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-11(35.08mm,13.7mm) on Top Layer And Pad U1-12(35.08mm,14.35mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3125.477mil|Location2.X=3136.727mil|Location1.Y=2481.58mil|Location2.Y=2492.83mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3125.477mil|Location2.X=3136.727mil|Location1.Y=2481.58mil|Location2.Y=2492.83mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-12(35.08mm,14.35mm) on Top Layer And Pad U1-13(35.08mm,15mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3125.477mil|Location2.X=3136.727mil|Location1.Y=2507.17mil|Location2.Y=2518.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3125.477mil|Location2.X=3136.727mil|Location1.Y=2507.17mil|Location2.Y=2518.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-13(35.08mm,15mm) on Top Layer And Pad U1-14(35.08mm,15.65mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2912.879mil|Location2.X=2924.129mil|Location1.Y=2481.58mil|Location2.Y=2492.83mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2912.879mil|Location2.X=2924.129mil|Location1.Y=2481.58mil|Location2.Y=2492.83mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-2(29.68mm,15mm) on Top Layer And Pad U1-3(29.68mm,14.35mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2912.879mil|Location2.X=2924.129mil|Location1.Y=2455.989mil|Location2.Y=2467.239mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2912.879mil|Location2.X=2924.129mil|Location1.Y=2455.989mil|Location2.Y=2467.239mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-3(29.68mm,14.35mm) on Top Layer And Pad U1-4(29.68mm,13.7mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2912.879mil|Location2.X=2924.129mil|Location1.Y=2430.399mil|Location2.Y=2441.649mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2912.879mil|Location2.X=2924.129mil|Location1.Y=2430.399mil|Location2.Y=2441.649mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-4(29.68mm,13.7mm) on Top Layer And Pad U1-5(29.68mm,13.05mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2912.879mil|Location2.X=2924.129mil|Location1.Y=2404.808mil|Location2.Y=2416.058mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2912.879mil|Location2.X=2924.129mil|Location1.Y=2404.808mil|Location2.Y=2416.058mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-5(29.68mm,13.05mm) on Top Layer And Pad U1-6(29.68mm,12.4mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2912.879mil|Location2.X=2924.129mil|Location1.Y=2379.218mil|Location2.Y=2390.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2912.879mil|Location2.X=2924.129mil|Location1.Y=2379.218mil|Location2.Y=2390.468mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-6(29.68mm,12.4mm) on Top Layer And Pad U1-7(29.68mm,11.75mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3125.477mil|Location2.X=3136.727mil|Location1.Y=2379.218mil|Location2.Y=2390.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3125.477mil|Location2.X=3136.727mil|Location1.Y=2379.218mil|Location2.Y=2390.468mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-8(35.08mm,11.75mm) on Top Layer And Pad U1-9(35.08mm,12.4mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDXAUTRCMRXGZSFXDIP4RRZVAU3FYT3XO004HN1BN53C5OZAQUE4FP"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1810.288mil|Location2.X=1821.538mil|Location1.Y=2006.396mil|Location2.Y=2019.772mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1810.288mil|Location2.X=1821.538mil|Location1.Y=2006.396mil|Location2.Y=2019.772mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Arc (3.75mm,3.75mm) on Top Overlay And Pad PTH2-1(3.75mm,3.75mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1810.288mil|Location2.X=1821.538mil|Location1.Y=3404.034mil|Location2.Y=3417.41mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1810.288mil|Location2.X=1821.538mil|Location1.Y=3404.034mil|Location2.Y=3417.41mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Arc (3.75mm,39.25mm) on Top Overlay And Pad PTH1-1(3.75mm,39.25mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3926.43mil|Location2.X=3937.68mil|Location1.Y=2006.396mil|Location2.Y=2019.772mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3926.43mil|Location2.X=3937.68mil|Location1.Y=2006.396mil|Location2.Y=2019.772mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Arc (57.5mm,3.75mm) on Top Overlay And Pad PTH3-1(57.5mm,3.75mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3926.43mil|Location2.X=3937.68mil|Location1.Y=3404.034mil|Location2.Y=3417.41mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3926.43mil|Location2.X=3937.68mil|Location1.Y=3404.034mil|Location2.Y=3417.41mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.149mm &lt; 0.254mm) Between Arc (57.5mm,39.25mm) on Top Overlay And Pad PTH4-1(57.5mm,39.25mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3588.844mil|Location2.X=3596.51mil|Location1.Y=2720.104mil|Location2.Y=2727.77mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3588.844mil|Location2.X=3596.51mil|Location1.Y=2720.104mil|Location2.Y=2727.77mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad L1-1(45.229mm,26.938mm) on Top Layer And Track (46.004mm,18.488mm)(46.004mm,35.388mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2923.49mil|Location2.X=2931.156mil|Location1.Y=2720.104mil|Location2.Y=2727.77mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2923.49mil|Location2.X=2931.156mil|Location1.Y=2720.104mil|Location2.Y=2727.77mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad L1-2(29.879mm,26.938mm) on Top Layer And Track (29.104mm,18.488mm)(29.104mm,35.388mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3313.643mil|Location2.X=3324.893mil|Location1.Y=2482.247mil|Location2.Y=2493.497mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3313.643mil|Location2.X=3324.893mil|Location1.Y=2482.247mil|Location2.Y=2493.497mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R1-1(39.459mm,14.15mm) on Top Layer And Track (39.053mm,14.848mm)(39.053mm,15.152mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3345.107mil|Location2.X=3356.357mil|Location1.Y=2482.247mil|Location2.Y=2493.497mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3345.107mil|Location2.X=3356.357mil|Location1.Y=2482.247mil|Location2.Y=2493.497mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R1-1(39.459mm,14.15mm) on Top Layer And Track (39.865mm,14.848mm)(39.865mm,15.152mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3313.643mil|Location2.X=3324.893mil|Location1.Y=2506.503mil|Location2.Y=2517.753mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3313.643mil|Location2.X=3324.893mil|Location1.Y=2506.503mil|Location2.Y=2517.753mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R1-2(39.459mm,15.85mm) on Top Layer And Track (39.053mm,14.848mm)(39.053mm,15.152mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3345.107mil|Location2.X=3356.357mil|Location1.Y=2506.503mil|Location2.Y=2517.753mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3345.107mil|Location2.X=3356.357mil|Location1.Y=2506.503mil|Location2.Y=2517.753mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R1-2(39.459mm,15.85mm) on Top Layer And Track (39.865mm,14.848mm)(39.865mm,15.152mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2882.186mil|Location2.X=2893.436mil|Location1.Y=2250.597mil|Location2.Y=2261.847mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2882.186mil|Location2.X=2893.436mil|Location1.Y=2250.597mil|Location2.Y=2261.847mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R2-1(28.5mm,9.35mm) on Top Layer And Track (28.094mm,8.348mm)(28.094mm,8.652mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2913.65mil|Location2.X=2924.9mil|Location1.Y=2250.597mil|Location2.Y=2261.847mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2913.65mil|Location2.X=2924.9mil|Location1.Y=2250.597mil|Location2.Y=2261.847mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R2-1(28.5mm,9.35mm) on Top Layer And Track (28.906mm,8.348mm)(28.906mm,8.652mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2882.186mil|Location2.X=2893.436mil|Location1.Y=2226.342mil|Location2.Y=2237.592mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2882.186mil|Location2.X=2893.436mil|Location1.Y=2226.342mil|Location2.Y=2237.592mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R2-2(28.5mm,7.65mm) on Top Layer And Track (28.094mm,8.348mm)(28.094mm,8.652mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2913.65mil|Location2.X=2924.9mil|Location1.Y=2226.342mil|Location2.Y=2237.592mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2913.65mil|Location2.X=2924.9mil|Location1.Y=2226.342mil|Location2.Y=2237.592mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R2-2(28.5mm,7.65mm) on Top Layer And Track (28.906mm,8.348mm)(28.906mm,8.652mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2754.233mil|Location2.X=2765.483mil|Location1.Y=2575.4mil|Location2.Y=2586.65mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2754.233mil|Location2.X=2765.483mil|Location1.Y=2575.4mil|Location2.Y=2586.65mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R3-1(25.25mm,17.6mm) on Top Layer And Track (24.844mm,16.598mm)(24.844mm,16.902mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2785.698mil|Location2.X=2796.948mil|Location1.Y=2575.4mil|Location2.Y=2586.65mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2785.698mil|Location2.X=2796.948mil|Location1.Y=2575.4mil|Location2.Y=2586.65mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R3-1(25.25mm,17.6mm) on Top Layer And Track (25.656mm,16.598mm)(25.656mm,16.902mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2754.233mil|Location2.X=2765.483mil|Location1.Y=2551.145mil|Location2.Y=2562.395mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2754.233mil|Location2.X=2765.483mil|Location1.Y=2551.145mil|Location2.Y=2562.395mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R3-2(25.25mm,15.9mm) on Top Layer And Track (24.844mm,16.598mm)(24.844mm,16.902mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2785.698mil|Location2.X=2796.948mil|Location1.Y=2551.145mil|Location2.Y=2562.395mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2785.698mil|Location2.X=2796.948mil|Location1.Y=2551.145mil|Location2.Y=2562.395mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R3-2(25.25mm,15.9mm) on Top Layer And Track (25.656mm,16.598mm)(25.656mm,16.902mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.926mil|Location2.X=2972.176mil|Location1.Y=2226.342mil|Location2.Y=2237.592mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.926mil|Location2.X=2972.176mil|Location1.Y=2226.342mil|Location2.Y=2237.592mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R4-1(30.5mm,7.65mm) on Top Layer And Track (30.094mm,8.348mm)(30.094mm,8.652mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2992.39mil|Location2.X=3003.64mil|Location1.Y=2226.342mil|Location2.Y=2237.592mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2992.39mil|Location2.X=3003.64mil|Location1.Y=2226.342mil|Location2.Y=2237.592mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R4-1(30.5mm,7.65mm) on Top Layer And Track (30.906mm,8.348mm)(30.906mm,8.652mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.926mil|Location2.X=2972.176mil|Location1.Y=2250.597mil|Location2.Y=2261.847mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.926mil|Location2.X=2972.176mil|Location1.Y=2250.597mil|Location2.Y=2261.847mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R4-2(30.5mm,9.35mm) on Top Layer And Track (30.094mm,8.348mm)(30.094mm,8.652mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2992.39mil|Location2.X=3003.64mil|Location1.Y=2250.597mil|Location2.Y=2261.847mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2992.39mil|Location2.X=3003.64mil|Location1.Y=2250.597mil|Location2.Y=2261.847mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R4-2(30.5mm,9.35mm) on Top Layer And Track (30.906mm,8.348mm)(30.906mm,8.652mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3128.249mil|Location2.X=3139.499mil|Location1.Y=2226.342mil|Location2.Y=2237.592mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3128.249mil|Location2.X=3139.499mil|Location1.Y=2226.342mil|Location2.Y=2237.592mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R6-1(34.75mm,7.65mm) on Top Layer And Track (34.344mm,8.348mm)(34.344mm,8.652mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3159.713mil|Location2.X=3170.963mil|Location1.Y=2226.342mil|Location2.Y=2237.592mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3159.713mil|Location2.X=3170.963mil|Location1.Y=2226.342mil|Location2.Y=2237.592mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R6-1(34.75mm,7.65mm) on Top Layer And Track (35.156mm,8.348mm)(35.156mm,8.652mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3128.249mil|Location2.X=3139.499mil|Location1.Y=2250.597mil|Location2.Y=2261.847mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3128.249mil|Location2.X=3139.499mil|Location1.Y=2250.597mil|Location2.Y=2261.847mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R6-2(34.75mm,9.35mm) on Top Layer And Track (34.344mm,8.348mm)(34.344mm,8.652mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3159.713mil|Location2.X=3170.963mil|Location1.Y=2250.597mil|Location2.Y=2261.847mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3159.713mil|Location2.X=3170.963mil|Location1.Y=2250.597mil|Location2.Y=2261.847mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R6-2(34.75mm,9.35mm) on Top Layer And Track (35.156mm,8.348mm)(35.156mm,8.652mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3285.729mil|Location2.X=3296.979mil|Location1.Y=2226.342mil|Location2.Y=2237.592mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3285.729mil|Location2.X=3296.979mil|Location1.Y=2226.342mil|Location2.Y=2237.592mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R7-1(38.75mm,7.65mm) on Top Layer And Track (38.344mm,8.348mm)(38.344mm,8.652mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3317.193mil|Location2.X=3328.443mil|Location1.Y=2226.342mil|Location2.Y=2237.592mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3317.193mil|Location2.X=3328.443mil|Location1.Y=2226.342mil|Location2.Y=2237.592mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R7-1(38.75mm,7.65mm) on Top Layer And Track (39.156mm,8.348mm)(39.156mm,8.652mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3285.729mil|Location2.X=3296.979mil|Location1.Y=2250.597mil|Location2.Y=2261.847mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3285.729mil|Location2.X=3296.979mil|Location1.Y=2250.597mil|Location2.Y=2261.847mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R7-2(38.75mm,9.35mm) on Top Layer And Track (38.344mm,8.348mm)(38.344mm,8.652mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3317.193mil|Location2.X=3328.443mil|Location1.Y=2250.597mil|Location2.Y=2261.847mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3317.193mil|Location2.X=3328.443mil|Location1.Y=2250.597mil|Location2.Y=2261.847mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.185mm &lt; 0.254mm) Between Pad R7-2(38.75mm,9.35mm) on Top Layer And Track (39.156mm,8.348mm)(39.156mm,8.652mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.185mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID2KOTTWMSKZXBJ5E4T0HEOPJFNKPFORY4RJEFMFLOV50CX5AGSUPI"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Net Antennae (Tolerance=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1811.398mil|Location2.X=1875.663mil|Location1.Y=2029.902mil|Location2.Y=2132.315mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1811.398mil|Location2.X=1875.663mil|Location1.Y=2029.902mil|Location2.Y=2132.315mil|Absolute=True">Net Antennae: Via (1.45mm,3.75mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1811.398mil|Location2.X=1875.663mil|Location1.Y=3427.539mil|Location2.Y=3529.952mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1811.398mil|Location2.X=1875.663mil|Location1.Y=3427.539mil|Location2.Y=3529.952mil|Absolute=True">Net Antennae: Via (1.45mm,39.25mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1837.933mil|Location2.X=1902.198mil|Location1.Y=1965.886mil|Location2.Y=2068.299mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1837.933mil|Location2.X=1902.198mil|Location1.Y=1965.886mil|Location2.Y=2068.299mil|Absolute=True">Net Antennae: Via (2.124mm,2.124mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1837.933mil|Location2.X=1902.198mil|Location1.Y=3363.524mil|Location2.Y=3465.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1837.933mil|Location2.X=1902.198mil|Location1.Y=3363.524mil|Location2.Y=3465.937mil|Absolute=True">Net Antennae: Via (2.124mm,37.624mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1837.933mil|Location2.X=1902.198mil|Location1.Y=3491.555mil|Location2.Y=3593.968mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1837.933mil|Location2.X=1902.198mil|Location1.Y=3491.555mil|Location2.Y=3593.968mil|Absolute=True">Net Antennae: Via (2.124mm,40.876mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1837.933mil|Location2.X=1902.198mil|Location1.Y=2093.917mil|Location2.Y=2196.33mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1837.933mil|Location2.X=1902.198mil|Location1.Y=2093.917mil|Location2.Y=2196.33mil|Absolute=True">Net Antennae: Via (2.124mm,5.376mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1901.949mil|Location2.X=1966.214mil|Location1.Y=1939.35mil|Location2.Y=2041.764mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1901.949mil|Location2.X=1966.214mil|Location1.Y=1939.35mil|Location2.Y=2041.764mil|Absolute=True">Net Antennae: Via (3.75mm,1.45mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3411.56mil|Location2.X=3458.683mil|Location1.Y=2366.063mil|Location2.Y=2439.524mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3411.56mil|Location2.X=3458.683mil|Location1.Y=2366.063mil|Location2.Y=2439.524mil|Absolute=True">Net Antennae: Via (41.894mm,12.089mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1965.965mil|Location2.X=2030.23mil|Location1.Y=1965.886mil|Location2.Y=2068.299mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1965.965mil|Location2.X=2030.23mil|Location1.Y=1965.886mil|Location2.Y=2068.299mil|Absolute=True">Net Antennae: Via (5.376mm,2.124mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1965.965mil|Location2.X=2030.23mil|Location1.Y=3363.524mil|Location2.Y=3465.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1965.965mil|Location2.X=2030.23mil|Location1.Y=3363.524mil|Location2.Y=3465.937mil|Absolute=True">Net Antennae: Via (5.376mm,37.624mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1965.965mil|Location2.X=2030.23mil|Location1.Y=3491.555mil|Location2.Y=3593.968mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1965.965mil|Location2.X=2030.23mil|Location1.Y=3491.555mil|Location2.Y=3593.968mil|Absolute=True">Net Antennae: Via (5.376mm,40.876mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1965.965mil|Location2.X=2030.23mil|Location1.Y=2093.917mil|Location2.Y=2196.33mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1965.965mil|Location2.X=2030.23mil|Location1.Y=2093.917mil|Location2.Y=2196.33mil|Absolute=True">Net Antennae: Via (5.376mm,5.376mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3954.075mil|Location2.X=4018.34mil|Location1.Y=1965.886mil|Location2.Y=2068.299mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3954.075mil|Location2.X=4018.34mil|Location1.Y=1965.886mil|Location2.Y=2068.299mil|Absolute=True">Net Antennae: Via (55.874mm,2.124mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3954.075mil|Location2.X=4018.34mil|Location1.Y=3363.524mil|Location2.Y=3465.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3954.075mil|Location2.X=4018.34mil|Location1.Y=3363.524mil|Location2.Y=3465.937mil|Absolute=True">Net Antennae: Via (55.874mm,37.624mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3954.075mil|Location2.X=4018.34mil|Location1.Y=3491.555mil|Location2.Y=3593.968mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3954.075mil|Location2.X=4018.34mil|Location1.Y=3491.555mil|Location2.Y=3593.968mil|Absolute=True">Net Antennae: Via (55.874mm,40.876mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3954.075mil|Location2.X=4018.34mil|Location1.Y=2093.917mil|Location2.Y=2196.33mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3954.075mil|Location2.X=4018.34mil|Location1.Y=2093.917mil|Location2.Y=2196.33mil|Absolute=True">Net Antennae: Via (55.874mm,5.376mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4018.091mil|Location2.X=4082.356mil|Location1.Y=1939.35mil|Location2.Y=2041.764mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4018.091mil|Location2.X=4082.356mil|Location1.Y=1939.35mil|Location2.Y=2041.764mil|Absolute=True">Net Antennae: Via (57.5mm,1.45mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4082.106mil|Location2.X=4146.371mil|Location1.Y=1965.886mil|Location2.Y=2068.299mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4082.106mil|Location2.X=4146.371mil|Location1.Y=1965.886mil|Location2.Y=2068.299mil|Absolute=True">Net Antennae: Via (59.126mm,2.124mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4082.106mil|Location2.X=4146.371mil|Location1.Y=3363.524mil|Location2.Y=3465.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4082.106mil|Location2.X=4146.371mil|Location1.Y=3363.524mil|Location2.Y=3465.937mil|Absolute=True">Net Antennae: Via (59.126mm,37.624mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4082.106mil|Location2.X=4146.371mil|Location1.Y=3491.555mil|Location2.Y=3593.968mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4082.106mil|Location2.X=4146.371mil|Location1.Y=3491.555mil|Location2.Y=3593.968mil|Absolute=True">Net Antennae: Via (59.126mm,40.876mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4082.106mil|Location2.X=4146.371mil|Location1.Y=2093.917mil|Location2.Y=2196.33mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4082.106mil|Location2.X=4146.371mil|Location1.Y=2093.917mil|Location2.Y=2196.33mil|Absolute=True">Net Antennae: Via (59.126mm,5.376mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4108.642mil|Location2.X=4172.907mil|Location1.Y=2029.902mil|Location2.Y=2132.315mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4108.642mil|Location2.X=4172.907mil|Location1.Y=2029.902mil|Location2.Y=2132.315mil|Absolute=True">Net Antennae: Via (59.8mm,3.75mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4108.642mil|Location2.X=4172.907mil|Location1.Y=3427.539mil|Location2.Y=3529.952mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Desktop files\Projects\Boost Converter\Boost Converter 120W\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4108.642mil|Location2.X=4172.907mil|Location1.Y=3427.539mil|Location2.Y=3529.952mil|Absolute=True">Net Antennae: Via (59.8mm,39.25mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

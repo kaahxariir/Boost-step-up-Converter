@@ -1,0 +1,13 @@
+Change Component Footprint: Designator=OUTPUT Old Footprint=691102710003 New Footprint=691102710003
+Added Component: Designator=PTH1(PH3.2)
+Added Component: Designator=PTH2(PH3.2)
+Added Component: Designator=PTH3(PH3.2)
+Added Component: Designator=PTH4(PH3.2)
+Added Pin To Net: NetName=GND Pin=PTH1-1
+Added Pin To Net: NetName=GND Pin=PTH2-1
+Added Pin To Net: NetName=GND Pin=PTH3-1
+Added Pin To Net: NetName=GND Pin=PTH4-1
+Added Member To Class: ClassName=Sheet Member=Component PTH1 PTH-M2.2
+Added Member To Class: ClassName=Sheet Member=Component PTH2 PTH-M2.2
+Added Member To Class: ClassName=Sheet Member=Component PTH3 PTH-M2.2
+Added Member To Class: ClassName=Sheet Member=Component PTH4 PTH-M2.2

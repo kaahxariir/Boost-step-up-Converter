@@ -1,0 +1,14 @@
+Change Component Comment : Designator=R4 Old Comment=1M New Comment=14.7K
+Change Component Comment : Designator=R1 Old Comment=1M New Comment=100K
+Change Component Comment : Designator=R2 Old Comment=1M New Comment=150K
+Change component parameters: Designator = "R2" ("R2"); Footprint = "RESC1608N"; UniqueID = "\RQFWEAPP" ("\RQFWEAPP")
+Change component parameters (AddParameter): Name = "Value"; Value = "1%"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R4" ("R4"); Footprint = "RESC1608N"; UniqueID = "\VBRKQQVS" ("\VBRKQQVS")
+Change component parameters (AddParameter): Name = "Value"; Value = "1%"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R5" ("R5"); Footprint = "CSS2H-2512"; UniqueID = "\DFQFDWAU" ("\DFQFDWAU")
+Change component parameters (AddParameter): Name = "ComponentLink1Description"; Value = "Product link Vender"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink1URL"; Value = "https://www.ozdisan.com/p/hassas-ve-sont-direncler-195/isabellenhutte-cms-r010-1-0-536275"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "ISABELLENHÜTTE"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer Part Number"; Value = "CMS-R010-1.0"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Rate"; Value = "4W"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = "12mR"; VariantName = "[No Variations]"
